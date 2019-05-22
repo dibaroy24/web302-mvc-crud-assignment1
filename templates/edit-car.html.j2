@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html.j2' %}
+
+{% block navigation %}
+  <nav>
+    <ul>
+      <li><a href="/">View Cars</a></li>
+      <li><a href="/add-car">Add Car</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    {% if get["edit"] == "error" %}
+    <div class="error">There was an error editing the car!</div>
+    {% endif %}
+
+    <h2>Edit Car</h2>
+
+    <form action="/update-car" method="post">
+      {{ form.name.label }}
+      {{ form.name() }}
+      {{ form.image.label }}
+      {{ form.image() }}
+      {{ form.topspeed.label }}
+      {{ form.topspeed() }}
+      {{ form.id }}
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+{% endblock %}

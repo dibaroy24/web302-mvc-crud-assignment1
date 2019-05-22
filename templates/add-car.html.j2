@@ -1,0 +1,42 @@
+{% extends 'layouts/base.html.j2' %}
+
+{% block navigation %}
+  <nav>
+    <ul>
+      <li><a href="/">View Cars</a></li>
+      <li><a href="/add-car" class="current">Add Car</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <!--
+    Using Jinja conditionals to display an error message. If yes, redirect with
+    a GET key of "add" which is equal to a value of "error"
+    -->
+    {% if get["add"] == "error" %}
+    <div class="error">There was an error adding the car!</div>
+    {% endif %}
+
+    <h2>Add Car</h2>
+
+    <!--
+    To display our form labels and fields in our form using Jinja and
+    Flask WTF we can simply access the label property of each attribute form
+    object to display the label and use each attribute as a method to
+    display the field which points to "/create-car" to run the create function
+    with "post" method
+    -->
+    <form action="/create-car" method="post">
+      {{ form.name.label }}
+      {{ form.name() }}
+      {{ form.image.label }}
+      {{ form.image() }}
+      {{ form.topspeed.label }}
+      {{ form.topspeed() }}
+      <button type="submit">Submit</button>
+    </form>
+
+  </div>
+{% endblock %}

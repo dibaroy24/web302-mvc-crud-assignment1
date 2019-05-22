@@ -1,0 +1,64 @@
+{% extends 'layouts/base.html.j2' %}
+
+{% block navigation %}
+  <nav>
+    <ul>
+      <li><a href="/" class="current">View Cars</a></li>
+      <li><a href="/add-car">Add Car</a></li>
+    </ul>
+  </nav>
+{% endblock %}
+
+<!-- This Jinja template for the View Cars page will display all the cars -->
+{% block content %}
+  <div class="container">
+    <!--
+    To display success messages and also redirect with GET key of add, edit or
+    delete with a value of success
+    -->
+    {% if get["add"] == "success" %}
+    <div class="success">The car was successfully added!</div>
+    {% elif get["edit"] == "success" %}
+    <div class="success">The car was successfully edited!</div>
+    {% elif get["delete"] == "success" %}
+    <div class="success">The car was successfully deleted!</div>
+    {% elif get["delete"] == "error" %}
+    <div class="error">There was a problem deleting the car!</div>
+    {% endif %}
+
+    <!--
+    Looping through the cars using Jinja for loops and display their data and
+    using the |e Jinja filter after displaying a variable in a Jinja
+    template will perform HTML escaping on that variable
+    -->
+    <h2>View Cars</h2>
+    <div class="grid">
+      {% for car in cars %}
+        <div class="car">
+          <!-- Incorporated the logic to display the fastest car in the in the
+          current web page -->
+          <h3>{{ car['name']|e }} : {{ car['topspeed']|e }} MPH {% if speeds|max == car["topspeed"] %}(fastest car in the current page){% endif %}</h3>
+          <img src="{{ url_for('static', filename='img/' + car['image']|e ) }}" alt="{{ car['name']|e }}">
+
+          <!--
+          On the View page inside of the loop we will have an Edit button and a
+          Delete button associated with each car using "post" method
+          -->
+          <form action="/delete-car" method="post">
+            <!--
+            To create the Edit button we can place a simple anchor tag
+            in the form which links to the Edit car page with a GET key of "id"
+            -->
+            <a href="/edit-car?id={{ car["id"] }}" class="button">Edit</a>
+            <!--
+            This form needs to have a hidden input tag which will have a name
+            of "id" and will pass the ID to the controller
+            -->
+            {{ form.id(value=car["id"]) }}
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

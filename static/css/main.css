@@ -1,0 +1,133 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: fantasy;
+  background: #E4F8FF;
+}
+
+header, footer {
+  background: #9F0000;
+  color: #E4F8FF;
+  padding: 50px;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+nav {
+  background: #0099BC;
+  text-align: center;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #E4F8FF;
+  padding: 20px;
+}
+
+nav ul li a:hover {
+  transition: all 1s;
+  background: #0069BC;
+}
+
+nav ul li a.current {
+  background: #E4F8FF;
+  color: #9F0000;
+}
+
+nav ul li a.current:hover {
+  background: #ddd;
+}
+
+.container {
+  max-width: 1200px;
+  min-height: 70vh;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.grid .car {
+  max-width: 25%;
+  padding: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="number"], select, textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button, input[type="submit"], input[type="reset"], .button {
+  display: inline-block;
+  background: #9F0000;
+  color: #E4F8FF;
+  border: 1px solid #333;
+  padding: 10px 20px;
+  margin: 5px 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: none;
+  text-align: center;
+}
+
+button:hover, input[type="submit"]:hover, input[type="reset"]:hover, .button:hover {
+  transition: 1s all;
+  background: #000;
+}
+
+.success {
+  background: palegreen;
+  color: darkgreen;
+  font-weight: bold;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.error {
+  background: lightpink;
+  color: darkred;
+  font-weight: bold;
+  padding: 20px;
+  margin: 20px 0;
+}
